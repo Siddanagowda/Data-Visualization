@@ -22,7 +22,7 @@ This project is a web-based data visualization dashboard built using Flask, Pand
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/Data-Visualization.git
+    git clone https://github.com/Siddanagowda/Data-Visualization.git
     cd Data-Visualization
     ```
 
