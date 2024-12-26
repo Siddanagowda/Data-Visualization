@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization Dashboard</title>
+    
+    <!-- Link to Bootstrap for grid layout and styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Link to the custom CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container-fluid dashboard-container">
+    <h1>Data Visualization Dashboard</h1>
+    
+    <!-- File Upload Form -->
+    <form action="/visualize" method="post" enctype="multipart/form-data" class="mb-4">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- Summary Statistics Section -->
+    <div class="dashboard-card">
+        <h2>Summary Statistics</h2>
+        <div class="table-container">
+            {{ summary_stats|safe }}
+        </div>
+    </div>
+
+    <!-- Correlation Heatmap Section -->
+    {% if heatmap_html %}
+    <div class="dashboard-card">
+        <h2>Correlation Heatmap</h2>
+        <div>
+            {{ heatmap_html|safe }}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Insights Section -->
+    <div class="dashboard-card">
+        <h2>Insights</h2>
+        <div>
+            {{ insights|safe }}
+        </div>
+    </div>
+
+    <!-- Graphs Section -->
+    <div class="dashboard-card">
+        <h2>Graphs</h2>
+        <div id="graphs" class="row">
+            {% for graph in graphs %}
+            <div class="col-md-6 mb-4">
+                {{ graph|safe }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Pair Plot Section -->
+    {% if pair_plot_img %}
+    <div class="dashboard-card">
+        <h2>Pair Plot</h2>
+        <div>
+            <img src="{{ pair_plot_img }}" alt="Pair Plot" class="img-fluid">
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* styles.css */
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Table styling */
+.table-container {
+    overflow-x: auto; /* Prevent horizontal overflow */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures borders are collapsed */
+}
+
+.table th, .table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Responsive table */
+.table th, .table td {
+    word-wrap: break-word; /* Allows long words to break onto the next line */
+}
+
+/* Dashboard styling */
+.dashboard-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Graphs and images */
+#graphs div, img {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    form {
+        flex-direction: column; /* Stack elements on smaller screens */
+        align-items: center; /* Center align items */
+        margin-bottom: 20px; /* Add space below form */
+     }
+
+     .table th, .table td {
+         font-size: 14px; /* Adjust font size for smaller screens */
+     }
+
+     .dashboard-card {
+         padding: 15px;
+     }
+}
+
+/* Custom styles for the dashboard layout */
+.dashboard-container {
+    margin: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
