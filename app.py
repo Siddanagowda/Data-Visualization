@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import io
 import base64
+import os
+os.environ['TCL_LIBRARY'] = r'C:\Path\To\Your\Tcl'
+import matplotlib
+matplotlib.use('Agg')  # Use a non-GUI backend
 
 app = Flask(__name__)
 
