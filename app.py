@@ -44,10 +44,7 @@ def visualize():
     color_sequence = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
 
     # Create initial graphs using Plotly with custom colors
-    graphs_html = []
-    for i, column in enumerate(columns[1:]):  # Start from second column to use the first as 'x'
-        fig = px.line(df, x=columns[0], y=column, title=f'Graph for {column}', color_discrete_sequence=[color_sequence[i % len(color_sequence)]])
-        graphs_html.append(f'<div id="graph-{i + 1}">{fig.to_html(full_html=False)}</div>')
+    graphs_html = create_graphs(df)
         
     # Generate pair plot (2D)
     pair_plot_img = create_pair_plot(df)
@@ -86,6 +83,101 @@ def create_pair_plot(dataframe):
     img_base64 = base64.b64encode(buf.read()).decode('utf-8')
     
     return f"data:image/png;base64,{img_base64}"
+
+def create_graphs(df):
+    graphs = []
+    
+    # Movie Link Graph
+    movie_link_fig = px.line(df, x='Title', y='Movie Link', title='Movie Links Over Time')
+    movie_link_fig.update_layout(
+        height=400,
+        margin=dict(t=30, b=30, l=50, r=20),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='#2c3e50')
+    )
+    graphs.append({
+        'type': 'line',
+        'title': 'Movie Links',
+        'content': movie_link_fig.to_html(full_html=False)
+    })
+    
+    # Year Graph
+    year_fig = px.bar(df, x='Title', y='Year', title='Movies by Year')
+    year_fig.update_layout(
+        height=400,
+        margin=dict(t=30, b=30, l=50, r=20),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='#2c3e50')
+    )
+    graphs.append({
+        'type': 'bar',
+        'title': 'Release Years',
+        'content': year_fig.to_html(full_html=False)
+    })
+    
+    # Duration Graph
+    duration_fig = px.scatter(df, x='Title', y='Duration', title='Movie Durations')
+    duration_fig.update_layout(
+        height=400,
+        margin=dict(t=30, b=30, l=50, r=20),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='#2c3e50')
+    )
+    graphs.append({
+        'type': 'scatter',
+        'title': 'Movie Durations',
+        'content': duration_fig.to_html(full_html=False)
+    })
+    
+    # MPA Graph
+    mpa_fig = px.bar(df, x='Title', y='MPA', title='MPA Ratings')
+    mpa_fig.update_layout(
+        height=400,
+        margin=dict(t=30, b=30, l=50, r=20),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='#2c3e50')
+    )
+    graphs.append({
+        'type': 'bar',
+        'title': 'MPA Ratings',
+        'content': mpa_fig.to_html(full_html=False)
+    })
+    
+    # Rating Graph
+    rating_fig = px.line(df, x='Title', y='Rating', title='Movie Ratings')
+    rating_fig.update_layout(
+        height=400,
+        margin=dict(t=30, b=30, l=50, r=20),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='#2c3e50')
+    )
+    graphs.append({
+        'type': 'line',
+        'title': 'Movie Ratings',
+        'content': rating_fig.to_html(full_html=False)
+    })
+    
+    # Votes Graph
+    votes_fig = px.bar(df, x='Title', y='Votes', title='Movie Votes')
+    votes_fig.update_layout(
+        height=400,
+        margin=dict(t=30, b=30, l=50, r=20),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='#2c3e50')
+    )
+    graphs.append({
+        'type': 'bar',
+        'title': 'Movie Votes',
+        'content': votes_fig.to_html(full_html=False)
+    })
+    
+    return graphs
 
 @app.route('/update_graph')
 def update_graph():
