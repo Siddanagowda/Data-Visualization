@@ -260,6 +260,38 @@ button:hover {
     line-height: 1.8;
 }
 
+/* DateTime Display */
+.datetime-display {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.datetime-display .time,
+.datetime-display .date {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.datetime-display .time:hover,
+.datetime-display .date:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.datetime-display i {
+    margin-right: 0.5rem;
+    color: var(--accent-color);
+}
+
 /* Loading Animation Styles */
 .loading-container {
     text-align: center;
