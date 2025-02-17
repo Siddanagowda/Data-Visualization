@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,flash
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
@@ -12,6 +12,8 @@ matplotlib.use('Agg')  # Use a non-GUI backend
 
 app = Flask(__name__)
 
+app.secret_key = '123456'  # Set a secret key for the Flask application
+
 # Global variable to store the DataFrame
 df = None
 
@@ -23,6 +25,13 @@ def home():
 def visualize():
     global df
     file = request.files['file']
+
+    # Check if the file is a CSV
+    if not file.filename.endswith('.csv'):
+        flash('Error: Only CSV files are allowed.')
+        return render_template('index.html')
+
+    # Read the CSV file
     df = pd.read_csv(file)
 
     # Get column names and basic summary

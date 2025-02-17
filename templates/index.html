@@ -19,6 +19,16 @@
 </head>
 <body>
     <div class="dashboard-container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-warning">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        
         <!-- Header Section -->
         <div class="header-section">
             <div class="row align-items-center">
